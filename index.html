@@ -1,1 +1,665 @@
-test website
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TZS | AI / IT Consulting</title>
+    <meta name="theme-color" content="#15171b" />
+    <meta
+      name="description"
+      content="TZS ber&auml;t kleine und mittelst&auml;ndische Unternehmen in AI-Strategie, Automatisierung und moderner IT-Transformation."
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/SpaceGrotesk-Variable.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/Manrope-Variable.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <style>
+      @font-face {
+        font-family: "Space Grotesk";
+        src: url("assets/fonts/SpaceGrotesk-Variable.ttf") format("truetype");
+        font-display: swap;
+        font-weight: 300 700;
+      }
+
+      @font-face {
+        font-family: "Manrope";
+        src: url("assets/fonts/Manrope-Variable.ttf") format("truetype");
+        font-display: swap;
+        font-weight: 200 800;
+      }
+
+      :root {
+        --bg: #121417;
+        --bg-soft: #17191d;
+        --bg-deep: #0d0f12;
+        --header: rgba(14, 16, 19, 0.84);
+        --badge-top: rgba(29, 32, 37, 0.94);
+        --badge-bottom: rgba(15, 17, 20, 0.99);
+        --line: rgba(255, 255, 255, 0.08);
+        --line-strong: rgba(92, 155, 240, 0.18);
+        --text: #f1f4f8;
+        --muted: #949da8;
+        --muted-strong: #b1bac6;
+        --accent: #5c9bf0;
+        --accent-soft: rgba(92, 155, 240, 0.08);
+        --content-width: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Manrope", "Aptos", "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% 0%, rgba(92, 155, 240, 0.045), transparent 24%),
+          radial-gradient(circle at 88% 18%, rgba(92, 155, 240, 0.028), transparent 16%),
+          radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.025), transparent 38%),
+          linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 44%, var(--bg-deep) 100%);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 24%),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+        background-size: 100% 100%, 120px 100%;
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.38), transparent 72%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .page-shell {
+        width: min(calc(100% - 2rem), var(--content-width));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(14px);
+        background: var(--header);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .site-header__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-height: 76px;
+      }
+
+      .brand-lockup {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+      }
+
+      .brand-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        width: clamp(56px, 6vw, 70px);
+        padding: 0.6rem;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 16px;
+        background: linear-gradient(180deg, var(--badge-top), var(--badge-bottom));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+      }
+
+      .brand-mark img {
+        width: 100%;
+        height: auto;
+      }
+
+      .brand-copy {
+        display: grid;
+        gap: 0.12rem;
+      }
+
+      .brand-copy strong,
+      h1,
+      h2,
+      h3,
+      .eyebrow,
+      .button,
+      .mini-label {
+        font-family: "Space Grotesk", "Aptos Display", "Segoe UI", sans-serif;
+        letter-spacing: -0.03em;
+      }
+
+      .brand-copy strong {
+        font-size: 0.98rem;
+        font-weight: 600;
+      }
+
+      .brand-copy span {
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.1rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a {
+        position: relative;
+        padding-bottom: 0.16rem;
+        transition: color 180ms ease;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.18rem;
+        width: 100%;
+        height: 1px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 180ms ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--text);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a:focus-visible::after {
+        transform: scaleX(1);
+      }
+
+      main {
+        padding: 2rem 0 4rem;
+      }
+
+      .section {
+        padding: 4.5rem 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .hero {
+        padding: 3rem 0 5rem;
+        border-top: 0;
+      }
+
+      .hero-grid,
+      .services-grid,
+      .founders-grid {
+        display: grid;
+        gap: 2rem;
+      }
+
+      .hero-grid {
+        align-items: end;
+      }
+
+      .hero-copy {
+        max-width: none;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin-bottom: 1.2rem;
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 2.6rem;
+        height: 1px;
+        background: currentColor;
+      }
+
+      h1 {
+        max-width: none;
+        margin: 0;
+        font-size: clamp(2.4rem, 8vw, 6.2rem);
+        line-height: 0.94;
+        font-weight: 600;
+      }
+
+      .hero-heading__line {
+        display: block;
+        white-space: nowrap;
+      }
+
+      .lead {
+        max-width: 38rem;
+        margin: 1.5rem 0 0;
+        color: var(--muted-strong);
+        font-size: clamp(1rem, 2vw, 1.16rem);
+        line-height: 1.8;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-top: 1.75rem;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3.15rem;
+        padding: 0.82rem 1.3rem;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease,
+          color 180ms ease;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        transform: translateY(-1px);
+      }
+
+      .button--primary {
+        border-color: rgba(92, 155, 240, 0.24);
+        background: rgba(92, 155, 240, 0.09);
+      }
+
+      .button--primary:hover,
+      .button--primary:focus-visible {
+        background: rgba(92, 155, 240, 0.13);
+      }
+
+      .button--secondary {
+        color: var(--muted-strong);
+        border-color: rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .button--secondary:hover,
+      .button--secondary:focus-visible {
+        color: var(--text);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .hero-notes {
+        display: grid;
+        gap: 1.8rem;
+        max-width: none;
+        margin-top: 0.75rem;
+      }
+
+      .note,
+      .text-block,
+      .closing {
+        padding-top: 1rem;
+        border-top: 1px solid var(--line-strong);
+      }
+
+      .mini-label {
+        display: inline-block;
+        margin-bottom: 0.7rem;
+        color: var(--accent);
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .note strong,
+      .text-block h3 {
+        display: block;
+        margin: 0 0 0.7rem;
+        font-size: 1.28rem;
+        font-weight: 600;
+        line-height: 1.15;
+      }
+
+      .note p,
+      .text-block p,
+      .section-heading p,
+      .closing p,
+      .site-footer__inner {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .section-heading {
+        display: grid;
+        gap: 0.7rem;
+        max-width: 44rem;
+        margin-bottom: 2.3rem;
+      }
+
+      .section-heading h2,
+      .closing strong {
+        margin: 0;
+        font-size: clamp(2rem, 4.6vw, 3.5rem);
+        line-height: 0.98;
+        font-weight: 600;
+        text-wrap: balance;
+      }
+
+      .section-heading p,
+      .closing p {
+        margin: 0;
+        max-width: 42rem;
+      }
+
+      .text-block h3 {
+        font-size: 1.36rem;
+      }
+
+      .closing {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .site-footer {
+        padding: 0 0 2rem;
+      }
+
+      .site-footer__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--line);
+        font-size: 0.94rem;
+      }
+
+      .site-footer__inner strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      @media (min-width: 820px) {
+        .hero-grid {
+          gap: 2.6rem;
+        }
+
+        .hero-notes {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 2.4rem;
+          max-width: 58rem;
+        }
+
+        .services-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 2.2rem;
+        }
+
+        .founders-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 2.2rem;
+        }
+      }
+
+      @media (max-width: 819px) {
+        .site-header__inner {
+          min-height: 72px;
+          padding: 0.8rem 0;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .hero {
+          padding-top: 2.25rem;
+        }
+      }
+
+      @media (max-width: 560px) {
+        main {
+          padding-top: 1.4rem;
+        }
+
+        h1 {
+          font-size: 2.35rem;
+        }
+
+        .section {
+          padding: 3.5rem 0;
+        }
+
+        .hero {
+          padding-bottom: 4rem;
+        }
+
+        .site-footer__inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="page-shell site-header__inner">
+        <a class="brand-lockup" href="#top" aria-label="TZS Startseite">
+          <span class="brand-mark">
+            <img
+              src="assets/logo/TZS_logo_dark_noBack.png"
+              alt="TZS Logo"
+              width="1024"
+              height="1024"
+            />
+          </span>
+          <span class="brand-copy">
+            <strong>TZS</strong>
+            <span>Tsch&ouml;pe Zin&szlig;er Solutions</span>
+          </span>
+        </a>
+
+        <nav class="nav-links" aria-label="Abschnittsnavigation">
+          <a href="#leistungen">Leistungen</a>
+          <a href="#gruender">Gr&uuml;nder</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="page-shell">
+        <section class="hero" aria-labelledby="hero-heading">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <span class="eyebrow">AI / IT Consulting</span>
+              <h1 id="hero-heading">
+                <span class="hero-heading__line">Präzise denken.</span>
+                <span class="hero-heading__line">Wirksam umsetzen.</span>
+              </h1>
+              <p class="lead">
+                TZS begleitet kleine und mittelst&auml;ndische Unternehmen bei
+                KI-Strategie, Automatisierung und moderner IT-Transformation.
+                Pr&auml;zise in der Analyse, pragmatisch in der Umsetzung.
+              </p>
+
+              <div class="hero-actions">
+                <a class="button button--primary" href="#leistungen">
+                  Leistungen ansehen
+                </a>
+                <a class="button button--secondary" href="#gruender">
+                  &Uuml;ber TZS
+                </a>
+              </div>
+            </div>
+
+            <aside class="hero-notes" aria-label="Profil von TZS">
+              <div class="note">
+                <span class="mini-label">Ansatz</span>
+                <strong>Strategie und Umsetzung in einem Bild</strong>
+                <p>
+                  AI und IT werden nicht getrennt gedacht, sondern als
+                  zusammenh&auml;ngende Ver&auml;nderung im Unternehmen.
+                </p>
+              </div>
+
+              <div class="note">
+                <span class="mini-label">Fokus</span>
+                <strong>F&uuml;r KMU mit klarem Umsetzungsanspruch</strong>
+                <p>
+                  Weniger Theorie, mehr belastbare Priorit&auml;ten,
+                  Architekturentscheidungen und realistische n&auml;chste Schritte.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section" id="leistungen" aria-labelledby="leistungen-heading">
+          <div class="section-heading">
+            <span class="eyebrow">Leistungen</span>
+            <h2 id="leistungen-heading">Drei Felder.<br>Ein konsistenter Anspruch.</h2>
+            <p>
+              TZS fokussiert auf die Bereiche, in denen technischer Fortschritt
+              unmittelbar nutzbar wird: klare Strategie, wirksame
+              Automatisierung und eine IT-Basis, die Ver&auml;nderungen tr&auml;gt.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <article class="text-block">
+              <h3>AI-Strategie</h3>
+              <p>
+                Potenziale strukturiert bewerten, Use Cases sch&auml;rfen und
+                Priorit&auml;ten definieren, die wirtschaftlich wie technisch
+                tragf&auml;hig sind.
+              </p>
+            </article>
+
+            <article class="text-block">
+              <h3>Automatisierung &amp; Anwendungen</h3>
+              <p>
+                Prozesse gezielt entlasten, AI sinnvoll integrieren und
+                Anwendungen so gestalten, dass sie im Alltag tats&auml;chlich
+                genutzt werden.
+              </p>
+            </article>
+
+            <article class="text-block">
+              <h3>IT-Architektur &amp; Transformation</h3>
+              <p>
+                Bestehende Systeme weiterentwickeln, technische Komplexit&auml;t
+                reduzieren und eine belastbare Grundlage f&uuml;r k&uuml;nftige
+                Schritte schaffen.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="gruender" aria-labelledby="gruender-heading">
+          <div class="section-heading">
+            <span class="eyebrow">Gr&uuml;nder</span>
+            <h2 id="gruender-heading">
+              TZS steht f&uuml;r fachliche Tiefe und klare Entscheidungen.
+            </h2>
+            <p>
+              Gegr&uuml;ndet von zwei technischen Beratern mit wissenschaftlichem
+              Hintergrund und Fokus auf L&ouml;sungen, die in Unternehmen
+              belastbar funktionieren.
+            </p>
+          </div>
+
+          <div class="founders-grid">
+            <article class="text-block">
+              <span class="mini-label">Founder</span>
+              <h3>Dr. Martin Tsch&ouml;pe</h3>
+              <p>
+                Steht für technische Tiefe in der Umsetzung, saubere Systeme und Lösungen, die auch unter realen Bedingungen tragen.
+              </p>
+            </article>
+
+            <article class="text-block">
+              <span class="mini-label">Founder</span>
+              <h3>Dr. Mario Zin&szlig;er</h3>
+              <p>
+                Bringt Produkterfahrung und technisches Know-how zusammen und übersetzt Anforderungen in tragfähige, nutzbare Lösungen.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-label="Abschluss">
+          <div class="closing">
+            <strong>TZS entwickelt Orientierung f&uuml;r den n&auml;chsten sinnvollen Schritt.</strong>
+            <p>
+              AI und IT dort einsetzen, wo sie Unternehmen klarer, schneller und
+              belastbarer machen.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-shell site-footer__inner">
+        <strong>TZS</strong>
+        <span>Tsch&ouml;pe Zin&szlig;er Solutions</span>
+      </div>
+    </footer>
+  </body>
+</html>
