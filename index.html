@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#15171b" />
     <meta
       name="description"
-      content="TZS ber&auml;t kleine und mittelst&auml;ndische Unternehmen in AI-Strategie, Automatisierung und moderner IT-Transformation."
+      content="TZS berät kleine und mittelständische Unternehmen in AI-Strategie, Automatisierung und moderner IT-Transformation."
     />
     <link
       rel="preload"
@@ -229,7 +229,6 @@
       }
 
       .hero-grid,
-      .services-grid,
       .founders-grid {
         display: grid;
         gap: 2rem;
@@ -352,6 +351,208 @@
         border-top: 1px solid var(--line-strong);
       }
 
+      .services-shell {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .services-nav {
+        display: grid;
+        gap: 0.65rem;
+        align-content: start;
+      }
+
+      .service-entry {
+        display: block;
+      }
+
+      .service-option {
+        position: relative;
+        width: 100%;
+        appearance: none;
+        padding: 0.62rem 2.5rem 0.72rem 0.95rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 22px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+          rgba(255, 255, 255, 0.01);
+        color: var(--muted-strong);
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease,
+          box-shadow 180ms ease,
+          color 180ms ease;
+      }
+
+      .service-option:hover,
+      .service-option:focus-visible {
+        transform: translateX(4px);
+        border-color: rgba(92, 155, 240, 0.2);
+        background:
+          linear-gradient(180deg, rgba(92, 155, 240, 0.07), rgba(255, 255, 255, 0)),
+          rgba(255, 255, 255, 0.02);
+        color: var(--text);
+      }
+
+      .service-option.is-active {
+        border-color: rgba(92, 155, 240, 0.3);
+        background:
+          linear-gradient(180deg, rgba(92, 155, 240, 0.1), rgba(255, 255, 255, 0)),
+          rgba(255, 255, 255, 0.025);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        color: var(--text);
+      }
+
+      .service-option__top {
+        position: absolute;
+        top: 0.48rem;
+        right: 0.82rem;
+      }
+
+      .service-option__index {
+        font-family: "Space Grotesk", "Aptos Display", "Segoe UI", sans-serif;
+      }
+
+      .service-option__index {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        transition: color 180ms ease, transform 180ms ease;
+      }
+
+      .service-option:hover .service-option__index,
+      .service-option:focus-visible .service-option__index,
+      .service-option.is-active .service-option__index {
+        color: var(--accent);
+        transform: translateX(2px);
+      }
+
+      .service-option__title {
+        display: block;
+        max-width: 100%;
+        font-family: "Space Grotesk", "Aptos Display", "Segoe UI", sans-serif;
+        font-size: clamp(1.02rem, 1.9vw, 1.28rem);
+        line-height: 1.08;
+        text-wrap: balance;
+        hyphens: auto;
+        overflow-wrap: anywhere;
+      }
+
+      .service-display {
+        position: relative;
+      }
+
+      .service-mobile-detail {
+        display: none;
+      }
+
+      .service-mobile-detail[hidden] {
+        display: none;
+      }
+
+      .service-mobile-detail .mini-label {
+        margin-bottom: 0;
+      }
+
+      .service-mobile-detail h3 {
+        margin: 0;
+        font-size: 1.28rem;
+        line-height: 1;
+        font-weight: 600;
+        text-wrap: balance;
+        hyphens: auto;
+        overflow-wrap: anywhere;
+      }
+
+      .service-mobile-detail p {
+        margin: 0;
+        color: var(--muted-strong);
+        line-height: 1.72;
+      }
+
+      .service-detail {
+        gap: 1.1rem;
+        padding: clamp(1.35rem, 3vw, 2rem);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 100% 0%, rgba(92, 155, 240, 0.16), transparent 34%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012));
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.18),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+
+      .service-detail[hidden] {
+        display: none;
+      }
+
+      .service-detail.is-active {
+        display: grid;
+        animation: service-detail-in 220ms ease;
+      }
+
+      .service-detail .mini-label {
+        margin-bottom: 0;
+      }
+
+      .service-detail h3 {
+        margin: 0;
+        max-width: min(16ch, 100%);
+        font-size: clamp(1.7rem, 4vw, 2.5rem);
+        line-height: 0.96;
+        font-weight: 600;
+        text-wrap: balance;
+        hyphens: auto;
+        overflow-wrap: anywhere;
+      }
+
+      .service-detail p {
+        margin: 0;
+        max-width: 38rem;
+        color: var(--muted-strong);
+        font-size: clamp(1rem, 1.7vw, 1.08rem);
+        line-height: 1.8;
+      }
+
+      .service-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-top: 0.3rem;
+      }
+
+      .service-chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2.05rem;
+        padding: 0.42rem 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.025);
+        color: var(--muted-strong);
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      @keyframes service-detail-in {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       .mini-label {
         display: inline-block;
         margin-bottom: 0.7rem;
@@ -441,9 +642,26 @@
           max-width: 58rem;
         }
 
-        .services-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+        .services-shell {
+          grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
           gap: 2.2rem;
+          align-items: stretch;
+        }
+
+        .service-display {
+          display: grid;
+          height: 100%;
+        }
+
+        .service-detail.is-active {
+          min-height: 100%;
+          align-content: center;
+          justify-items: center;
+          text-align: center;
+        }
+
+        .service-detail.is-active .service-chips {
+          justify-content: center;
         }
 
         .founders-grid {
@@ -463,11 +681,113 @@
         .hero {
           padding-top: 2.25rem;
         }
+
+        .services-shell {
+          display: block;
+        }
+
+        .services-nav {
+          gap: 0.75rem;
+        }
+
+        .service-display {
+          display: none;
+        }
+
+        .service-entry {
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          border-radius: 22px;
+          background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+            rgba(255, 255, 255, 0.01);
+          overflow: hidden;
+          transition:
+            border-color 180ms ease,
+            background 180ms ease,
+            box-shadow 180ms ease;
+        }
+
+        .service-entry.is-active {
+          border-color: rgba(92, 155, 240, 0.28);
+          background:
+            linear-gradient(180deg, rgba(92, 155, 240, 0.1), rgba(255, 255, 255, 0)),
+            rgba(255, 255, 255, 0.025);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .service-option,
+        .service-option.is-active {
+          width: 100%;
+          border: 0;
+          border-radius: 0;
+          background: transparent;
+          box-shadow: none;
+          transform: none;
+        }
+
+        .service-option {
+          padding: 0.78rem 2.45rem 0.82rem 0.88rem;
+        }
+
+        .service-option:hover,
+        .service-option:focus-visible {
+          background: transparent;
+        }
+
+        .service-mobile-detail:not([hidden]) {
+          display: grid;
+          gap: 0.95rem;
+          padding: 0.72rem 0.88rem 0.92rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+          animation: service-detail-in 220ms ease;
+        }
+
+        .service-mobile-detail .service-chips {
+          margin-top: 0;
+        }
       }
 
       @media (max-width: 560px) {
         main {
           padding-top: 1.4rem;
+        }
+
+        .services-nav {
+          gap: 0.55rem;
+        }
+
+        .service-option {
+          padding: 0.66rem 2.1rem 0.72rem 0.82rem;
+        }
+
+        .service-option__top {
+          top: 0.42rem;
+          right: 0.7rem;
+        }
+
+        .service-option__title {
+          font-size: 1rem;
+        }
+
+        .service-detail {
+          padding: 1.15rem 1rem 1.2rem;
+          border-radius: 22px;
+        }
+
+        .service-detail h3 {
+          font-size: 1.5rem;
+        }
+
+        .service-entry {
+          border-radius: 18px;
+        }
+
+        .service-mobile-detail:not([hidden]) {
+          padding: 0.66rem 0.82rem 0.82rem;
+        }
+
+        .service-mobile-detail h3 {
+          font-size: 1.18rem;
         }
 
         h1 {
@@ -516,13 +836,13 @@
           </span>
           <span class="brand-copy">
             <strong>TZS</strong>
-            <span>Tsch&ouml;pe Zin&szlig;er Solutions</span>
+            <span>Tschöpe Zinßer Solutions</span>
           </span>
         </a>
 
         <nav class="nav-links" aria-label="Abschnittsnavigation">
           <a href="#leistungen">Leistungen</a>
-          <a href="#gruender">Gr&uuml;nder</a>
+          <a href="#gruender">Gründer</a>
         </nav>
       </div>
     </header>
@@ -538,9 +858,9 @@
                 <span class="hero-heading__line">Wirksam umsetzen.</span>
               </h1>
               <p class="lead">
-                TZS begleitet kleine und mittelst&auml;ndische Unternehmen bei
+                TZS begleitet kleine und mittelständische Unternehmen bei
                 KI-Strategie, Automatisierung und moderner IT-Transformation.
-                Pr&auml;zise in der Analyse, pragmatisch in der Umsetzung.
+                Präzise in der Analyse, pragmatisch in der Umsetzung.
               </p>
 
               <div class="hero-actions">
@@ -548,7 +868,7 @@
                   Leistungen ansehen
                 </a>
                 <a class="button button--secondary" href="#gruender">
-                  &Uuml;ber TZS
+                  über TZS
                 </a>
               </div>
             </div>
@@ -559,16 +879,16 @@
                 <strong>Strategie und Umsetzung in einem Bild</strong>
                 <p>
                   AI und IT werden nicht getrennt gedacht, sondern als
-                  zusammenh&auml;ngende Ver&auml;nderung im Unternehmen.
+                  zusammenhängende Veränderung im Unternehmen.
                 </p>
               </div>
 
               <div class="note">
                 <span class="mini-label">Fokus</span>
-                <strong>F&uuml;r KMU mit klarem Umsetzungsanspruch</strong>
+                <strong>Für KMU mit klarem Umsetzungsanspruch</strong>
                 <p>
-                  Weniger Theorie, mehr belastbare Priorit&auml;ten,
-                  Architekturentscheidungen und realistische n&auml;chste Schritte.
+                  Weniger Theorie, mehr belastbare Prioritäten,
+                  Architekturentscheidungen und realistische nächste Schritte.
                 </p>
               </div>
             </aside>
@@ -578,53 +898,388 @@
         <section class="section" id="leistungen" aria-labelledby="leistungen-heading">
           <div class="section-heading">
             <span class="eyebrow">Leistungen</span>
-            <h2 id="leistungen-heading">Drei Felder.<br>Ein konsistenter Anspruch.</h2>
+            <h2 id="leistungen-heading">
+              Von der Potenzialanalyse bis zur produktiven KI-Anwendung.
+            </h2>
             <p>
-              TZS fokussiert auf die Bereiche, in denen technischer Fortschritt
-              unmittelbar nutzbar wird: klare Strategie, wirksame
-              Automatisierung und eine IT-Basis, die Ver&auml;nderungen tr&auml;gt.
+              TZS unterstützt Unternehmen dabei, Optionen sinnvoll zu
+              identifizieren, sicher zu integrieren und in konkrete Werkzeuge,
+              Wissenssysteme und Automatisierungen zu übersetzen.
             </p>
           </div>
 
-          <div class="services-grid">
-            <article class="text-block">
-              <h3>AI-Strategie</h3>
-              <p>
-                Potenziale strukturiert bewerten, Use Cases sch&auml;rfen und
-                Priorit&auml;ten definieren, die wirtschaftlich wie technisch
-                tragf&auml;hig sind.
-              </p>
-            </article>
+          <div class="services-shell">
+            <div class="services-nav" aria-label="Leistungsbereiche">
+              <div class="service-entry is-active">
+                <button
+                  class="service-option is-active"
+                  type="button"
+                  data-service="llm"
+                  aria-controls="service-llm"
+                  aria-pressed="true"
+                  aria-expanded="true"
+                >
+                  <span class="service-option__top">
+                    <span class="service-option__index">01</span>
+                  </span>
+                  <span class="service-option__title">
+                    Lokale LLMs &amp; private KI-Infrastruktur
+                  </span>
+                </button>
+                <div class="service-mobile-detail">
+                  <span class="mini-label">Infrastruktur</span>
+                  <h3>Lokale LLMs &amp; private KI-Infrastruktur</h3>
+                  <p>
+                    Wir entwickeln datenschutzkonforme KI-L&ouml;sungen auf
+                    lokaler oder kontrollierter Infrastruktur, damit sensible
+                    Daten im eigenen Verantwortungsbereich bleiben.
+                  </p>
+                  <div class="service-chips" aria-label="Schwerpunkte">
+                    <span class="service-chip">Datenschutz</span>
+                    <span class="service-chip">On-Premises</span>
+                    <span class="service-chip">Kontrolle</span>
+                  </div>
+                </div>
+              </div>
 
-            <article class="text-block">
-              <h3>Automatisierung &amp; Anwendungen</h3>
-              <p>
-                Prozesse gezielt entlasten, AI sinnvoll integrieren und
-                Anwendungen so gestalten, dass sie im Alltag tats&auml;chlich
-                genutzt werden.
-              </p>
-            </article>
+              <div class="service-entry">
+                <button
+                  class="service-option"
+                  type="button"
+                  data-service="rag"
+                  aria-controls="service-rag"
+                  aria-pressed="false"
+                  aria-expanded="false"
+                >
+                  <span class="service-option__top">
+                    <span class="service-option__index">02</span>
+                  </span>
+                  <span class="service-option__title">Wissensassistenz mit RAG</span>
+                </button>
+                <div class="service-mobile-detail" hidden>
+                  <span class="mini-label">Wissenszugang</span>
+                  <h3>Wissensassistenz mit RAG</h3>
+                  <p>
+                    Wir machen interne Dokumentation, Prozesse und Fachwissen
+                    per nat&uuml;rlicher Sprache zug&auml;nglich, damit
+                    Informationen schneller gefunden und sicher genutzt werden
+                    k&ouml;nnen.
+                  </p>
+                  <div class="service-chips" aria-label="Schwerpunkte">
+                    <span class="service-chip">Wissenszugang</span>
+                    <span class="service-chip">Dokumentation</span>
+                    <span class="service-chip">Recherche</span>
+                  </div>
+                </div>
+              </div>
 
-            <article class="text-block">
-              <h3>IT-Architektur &amp; Transformation</h3>
-              <p>
-                Bestehende Systeme weiterentwickeln, technische Komplexit&auml;t
-                reduzieren und eine belastbare Grundlage f&uuml;r k&uuml;nftige
-                Schritte schaffen.
-              </p>
-            </article>
+              <div class="service-entry">
+                <button
+                  class="service-option"
+                  type="button"
+                  data-service="tools"
+                  aria-controls="service-tools"
+                  aria-pressed="false"
+                  aria-expanded="false"
+                >
+                  <span class="service-option__top">
+                    <span class="service-option__index">03</span>
+                  </span>
+                  <span class="service-option__title">Individuelle Business-Tools</span>
+                </button>
+                <div class="service-mobile-detail" hidden>
+                  <span class="mini-label">Anwendungen</span>
+                  <h3>Individuelle Business-Tools</h3>
+                  <p>
+                    Wir bauen schlanke Anwendungen mit intuitiver
+                    Oberfl&auml;che, die exakt auf Ihren Prozess, Ihren
+                    Anwendungsfall und Ihre Arbeitsweise zugeschnitten sind.
+                  </p>
+                  <div class="service-chips" aria-label="Schwerpunkte">
+                    <span class="service-chip">Workflow-Fit</span>
+                    <span class="service-chip">GUI</span>
+                    <span class="service-chip">Ma&szlig;anfertigung</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-entry">
+                <button
+                  class="service-option"
+                  type="button"
+                  data-service="chatbots"
+                  aria-controls="service-chatbots"
+                  aria-pressed="false"
+                  aria-expanded="false"
+                >
+                  <span class="service-option__top">
+                    <span class="service-option__index">04</span>
+                  </span>
+                  <span class="service-option__title">
+                    Interne &amp; externe KI-Chatbots
+                  </span>
+                </button>
+                <div class="service-mobile-detail" hidden>
+                  <span class="mini-label">Assistenz</span>
+                  <h3>Interne &amp; externe KI-Chatbots</h3>
+                  <p>
+                    Wir entwickeln Chatbots f&uuml;r interne Teams,
+                    Support-Prozesse oder externe Beratung, etwa f&uuml;r Shops,
+                    Serviceportale oder Wissenszug&auml;nge.
+                  </p>
+                  <div class="service-chips" aria-label="Schwerpunkte">
+                    <span class="service-chip">Beratung</span>
+                    <span class="service-chip">Support</span>
+                    <span class="service-chip">Self-Service</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-entry">
+                <button
+                  class="service-option"
+                  type="button"
+                  data-service="analyse"
+                  aria-controls="service-analyse"
+                  aria-pressed="false"
+                  aria-expanded="false"
+                >
+                  <span class="service-option__top">
+                    <span class="service-option__index">05</span>
+                  </span>
+                  <span class="service-option__title">KI-Potenzialanalyse</span>
+                </button>
+                <div class="service-mobile-detail" hidden>
+                  <span class="mini-label">Analyse</span>
+                  <h3>KI-Potenzialanalyse</h3>
+                  <p>
+                    Wir identifizieren, in welchen Bereichen KI f&uuml;r Ihr
+                    Unternehmen echten Mehrwert schafft, priorisieren sinnvolle
+                    Anwendungsf&auml;lle und schaffen eine belastbare
+                    Entscheidungsgrundlage.
+                  </p>
+                  <div class="service-chips" aria-label="Schwerpunkte">
+                    <span class="service-chip">Use Cases</span>
+                    <span class="service-chip">Priorisierung</span>
+                    <span class="service-chip">Roadmap</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-entry">
+                <button
+                  class="service-option"
+                  type="button"
+                  data-service="dokumente"
+                  aria-controls="service-dokumente"
+                  aria-pressed="false"
+                  aria-expanded="false"
+                >
+                  <span class="service-option__top">
+                    <span class="service-option__index">06</span>
+                  </span>
+                  <span class="service-option__title">Dokumenten-Automatisierung</span>
+                </button>
+                <div class="service-mobile-detail" hidden>
+                  <span class="mini-label">Automation</span>
+                  <h3>Dokumenten-Automatisierung</h3>
+                  <p>
+                    Wir automatisieren das Auslesen, Strukturieren und
+                    Weiterverarbeiten von Dokumenten wie Rechnungen, Angeboten,
+                    Formularen oder Vertr&auml;gen.
+                  </p>
+                  <div class="service-chips" aria-label="Schwerpunkte">
+                    <span class="service-chip">Extraktion</span>
+                    <span class="service-chip">Dokumente</span>
+                    <span class="service-chip">Effizienz</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-entry">
+                <button
+                  class="service-option"
+                  type="button"
+                  data-service="schulungen"
+                  aria-controls="service-schulungen"
+                  aria-pressed="false"
+                  aria-expanded="false"
+                >
+                <span class="service-option__top">
+                  <span class="service-option__index">07</span>
+                </span>
+                <span class="service-option__title">
+                  Schulungen für Teams &amp; Führungskräfte
+                </span>
+                </button>
+                <div class="service-mobile-detail" hidden>
+                  <span class="mini-label">Enablement</span>
+                  <h3>Schulungen f&uuml;r Teams &amp; F&uuml;hrungskr&auml;fte</h3>
+                  <p>
+                    Wir bef&auml;higen Teams und Entscheidungstr&auml;ger, KI
+                    realistisch zu bewerten, sinnvoll einzusetzen und mit
+                    klaren Leitlinien im Unternehmen zu verankern.
+                  </p>
+                  <div class="service-chips" aria-label="Schwerpunkte">
+                    <span class="service-chip">Enablement</span>
+                    <span class="service-chip">Adoption</span>
+                    <span class="service-chip">Leitlinien</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="service-display">
+              <article class="service-detail is-active" id="service-llm" data-service-panel="llm">
+                <span class="mini-label">Infrastruktur</span>
+                <h3>Lokale LLMs &amp; private KI-Infrastruktur</h3>
+                <p>
+                  Wir entwickeln datenschutzkonforme KI-Lösungen auf
+                  lokaler oder kontrollierter Infrastruktur, damit sensible
+                  Daten im eigenen Verantwortungsbereich bleiben.
+                </p>
+                <div class="service-chips" aria-label="Schwerpunkte">
+                  <span class="service-chip">Datenschutz</span>
+                  <span class="service-chip">On-Premises</span>
+                  <span class="service-chip">Kontrolle</span>
+                </div>
+              </article>
+
+              <article
+                class="service-detail"
+                id="service-rag"
+                data-service-panel="rag"
+                hidden
+              >
+                <span class="mini-label">Wissenszugang</span>
+                <h3>Wissensassistenz mit RAG</h3>
+                <p>
+                  Wir machen interne Dokumentation, Prozesse und Fachwissen per
+                  natürlicher Sprache zugänglich, damit Informationen
+                  schneller gefunden und sicher genutzt werden können.
+                </p>
+                <div class="service-chips" aria-label="Schwerpunkte">
+                  <span class="service-chip">Wissenszugang</span>
+                  <span class="service-chip">Dokumentation</span>
+                  <span class="service-chip">Recherche</span>
+                </div>
+              </article>
+
+              <article
+                class="service-detail"
+                id="service-tools"
+                data-service-panel="tools"
+                hidden
+              >
+                <span class="mini-label">Anwendungen</span>
+                <h3>Individuelle Business-Tools</h3>
+                <p>
+                  Wir bauen schlanke Anwendungen mit intuitiver
+                  Oberfläche, die exakt auf Ihren Prozess, Ihren
+                  Anwendungsfall und Ihre Arbeitsweise zugeschnitten sind.
+                </p>
+                <div class="service-chips" aria-label="Schwerpunkte">
+                  <span class="service-chip">Workflow-Fit</span>
+                  <span class="service-chip">GUI</span>
+                  <span class="service-chip">Maßanfertigung</span>
+                </div>
+              </article>
+
+              <article
+                class="service-detail"
+                id="service-chatbots"
+                data-service-panel="chatbots"
+                hidden
+              >
+                <span class="mini-label">Assistenz</span>
+                <h3>Interne &amp; externe KI-Chatbots</h3>
+                <p>
+                  Wir entwickeln Chatbots für interne Teams,
+                  Support-Prozesse oder externe Beratung, etwa für Shops,
+                  Serviceportale oder Wissenszugänge.
+                </p>
+                <div class="service-chips" aria-label="Schwerpunkte">
+                  <span class="service-chip">Beratung</span>
+                  <span class="service-chip">Support</span>
+                  <span class="service-chip">Self-Service</span>
+                </div>
+              </article>
+
+              <article
+                class="service-detail"
+                id="service-analyse"
+                data-service-panel="analyse"
+                hidden
+              >
+                <span class="mini-label">Analyse</span>
+                <h3>KI-Potenzialanalyse</h3>
+                <p>
+                  Wir identifizieren, in welchen Bereichen KI für Ihr
+                  Unternehmen echten Mehrwert schafft, priorisieren sinnvolle
+                  Anwendungsfälle und schaffen eine belastbare
+                  Entscheidungsgrundlage.
+                </p>
+                <div class="service-chips" aria-label="Schwerpunkte">
+                  <span class="service-chip">Use Cases</span>
+                  <span class="service-chip">Priorisierung</span>
+                  <span class="service-chip">Roadmap</span>
+                </div>
+              </article>
+
+              <article
+                class="service-detail"
+                id="service-dokumente"
+                data-service-panel="dokumente"
+                hidden
+              >
+                <span class="mini-label">Automation</span>
+                <h3>Dokumenten-Automatisierung</h3>
+                <p>
+                  Wir automatisieren das Auslesen, Strukturieren und
+                  Weiterverarbeiten von Dokumenten wie Rechnungen, Angeboten,
+                  Formularen oder Verträgen.
+                </p>
+                <div class="service-chips" aria-label="Schwerpunkte">
+                  <span class="service-chip">Extraktion</span>
+                  <span class="service-chip">Dokumente</span>
+                  <span class="service-chip">Effizienz</span>
+                </div>
+              </article>
+
+              <article
+                class="service-detail"
+                id="service-schulungen"
+                data-service-panel="schulungen"
+                hidden
+              >
+                <span class="mini-label">Enablement</span>
+                <h3>Schulungen für Teams &amp; Führungskräfte</h3>
+                <p>
+                  Wir befähigen Teams und Entscheidungsträger, KI
+                  realistisch zu bewerten, sinnvoll einzusetzen und mit klaren
+                  Leitlinien im Unternehmen zu verankern.
+                </p>
+                <div class="service-chips" aria-label="Schwerpunkte">
+                  <span class="service-chip">Enablement</span>
+                  <span class="service-chip">Adoption</span>
+                  <span class="service-chip">Leitlinien</span>
+                </div>
+              </article>
+
+            </div>
           </div>
         </section>
 
         <section class="section" id="gruender" aria-labelledby="gruender-heading">
           <div class="section-heading">
-            <span class="eyebrow">Gr&uuml;nder</span>
+            <span class="eyebrow">Gründer</span>
             <h2 id="gruender-heading">
-              TZS steht f&uuml;r fachliche Tiefe und klare Entscheidungen.
+              TZS steht für fachliche Tiefe und klare Entscheidungen.
             </h2>
             <p>
-              Gegr&uuml;ndet von zwei technischen Beratern mit wissenschaftlichem
-              Hintergrund und Fokus auf L&ouml;sungen, die in Unternehmen
+              Gegründet von zwei technischen Beratern mit wissenschaftlichem
+              Hintergrund und Fokus auf Lösungen, die in Unternehmen
               belastbar funktionieren.
             </p>
           </div>
@@ -632,7 +1287,7 @@
           <div class="founders-grid">
             <article class="text-block">
               <span class="mini-label">Founder</span>
-              <h3>Dr. Martin Tsch&ouml;pe</h3>
+              <h3>Dr. Martin Tschöpe</h3>
               <p>
                 Steht für technische Tiefe in der Umsetzung, saubere Systeme und Lösungen, die auch unter realen Bedingungen tragen.
               </p>
@@ -640,7 +1295,7 @@
 
             <article class="text-block">
               <span class="mini-label">Founder</span>
-              <h3>Dr. Mario Zin&szlig;er</h3>
+              <h3>Dr. Mario Zinßer</h3>
               <p>
                 Bringt Produkterfahrung und technisches Know-how zusammen und übersetzt Anforderungen in tragfähige, nutzbare Lösungen.
               </p>
@@ -653,7 +1308,7 @@
 
         <section class="section" aria-label="Abschluss">
           <div class="closing">
-            <strong>TZS entwickelt Orientierung f&uuml;r den n&auml;chsten sinnvollen Schritt.</strong>
+            <strong>TZS entwickelt Orientierung für den nächsten sinnvollen Schritt.</strong>
             <p>
               AI und IT dort einsetzen, wo sie Unternehmen klarer, schneller und
               belastbarer machen.
@@ -666,8 +1321,61 @@
     <footer class="site-footer">
       <div class="page-shell site-footer__inner">
         <strong>TZS</strong>
-        <span>Tsch&ouml;pe Zin&szlig;er Solutions</span>
+        <span>Tschöpe Zinßer Solutions</span>
       </div>
     </footer>
+
+    <script>
+      (() => {
+        const servicesSection = document.querySelector("#leistungen");
+
+        if (!servicesSection) {
+          return;
+        }
+
+        const entries = [...servicesSection.querySelectorAll(".service-entry")];
+        const options = [...servicesSection.querySelectorAll(".service-option")];
+        const panels = [...servicesSection.querySelectorAll(".service-detail")];
+        const initialService =
+          options.find((option) => option.classList.contains("is-active"))?.dataset.service ??
+          options[0]?.dataset.service;
+
+        const setActiveService = (serviceId) => {
+          entries.forEach((entry) => {
+            const option = entry.querySelector(".service-option");
+            const mobileDetail = entry.querySelector(".service-mobile-detail");
+            const isActive = option?.dataset.service === serviceId;
+
+            entry.classList.toggle("is-active", isActive);
+
+            if (option) {
+              option.classList.toggle("is-active", isActive);
+              option.setAttribute("aria-pressed", String(isActive));
+              option.setAttribute("aria-expanded", String(isActive));
+            }
+
+            if (mobileDetail) {
+              mobileDetail.hidden = !isActive;
+            }
+          });
+
+          panels.forEach((panel) => {
+            const isActive = panel.dataset.servicePanel === serviceId;
+            panel.classList.toggle("is-active", isActive);
+            panel.hidden = !isActive;
+          });
+        };
+
+        options.forEach((option) => {
+          option.addEventListener("click", () => {
+            setActiveService(option.dataset.service);
+          });
+        });
+
+        if (initialService) {
+          setActiveService(initialService);
+        }
+      })();
+    </script>
   </body>
 </html>
