@@ -126,6 +126,13 @@
         min-height: 76px;
       }
 
+      .site-header__bar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        min-width: 0;
+      }
+
       .brand-lockup {
         display: inline-flex;
         align-items: center;
@@ -174,6 +181,60 @@
       .brand-copy span {
         color: var(--muted);
         font-size: 0.84rem;
+      }
+
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.28rem;
+        width: 3rem;
+        height: 3rem;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.02);
+        color: var(--text);
+        cursor: pointer;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease;
+      }
+
+      .nav-toggle:hover,
+      .nav-toggle:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(92, 155, 240, 0.24);
+        background: rgba(92, 155, 240, 0.08);
+      }
+
+      .nav-toggle__line {
+        display: block;
+        width: 1.05rem;
+        height: 1.5px;
+        border-radius: 999px;
+        background: currentColor;
+        transition: transform 180ms ease, opacity 180ms ease;
+        transform-origin: center;
+      }
+
+      .nav-toggle[aria-expanded="true"] {
+        border-color: rgba(92, 155, 240, 0.28);
+        background: rgba(92, 155, 240, 0.12);
+      }
+
+      .nav-toggle[aria-expanded="true"] .nav-toggle__line:nth-child(1) {
+        transform: translateY(0.37rem) rotate(45deg);
+      }
+
+      .nav-toggle[aria-expanded="true"] .nav-toggle__line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav-toggle[aria-expanded="true"] .nav-toggle__line:nth-child(3) {
+        transform: translateY(-0.37rem) rotate(-45deg);
       }
 
       .nav-links {
@@ -674,8 +735,41 @@
         .site-header__inner {
           min-height: 72px;
           padding: 0.8rem 0;
-          align-items: flex-start;
+          align-items: stretch;
+        }
+
+        .site-header__bar {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .brand-lockup {
+          min-width: 0;
+        }
+
+        .nav-toggle {
+          display: inline-flex;
+          flex: 0 0 auto;
+        }
+
+        .nav-links {
+          display: none;
+          width: 100%;
+          margin-top: 0.18rem;
+          padding-top: 0.55rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
           flex-direction: column;
+          align-items: flex-start;
+          gap: 0.12rem;
+        }
+
+        .nav-links.is-open {
+          display: flex;
+        }
+
+        .nav-links a {
+          width: 100%;
+          padding: 0.68rem 0;
         }
 
         .hero {
@@ -825,22 +919,36 @@
   <body>
     <header class="site-header">
       <div class="page-shell site-header__inner">
-        <a class="brand-lockup" href="#top" aria-label="TZS Startseite">
-          <span class="brand-mark">
-            <img
-              src="assets/logo/TZS_logo_dark_noBack.png"
-              alt="TZS Logo"
-              width="1024"
-              height="1024"
-            />
-          </span>
-          <span class="brand-copy">
-            <strong>TZS</strong>
-            <span>Tschöpe Zinßer Solutions</span>
-          </span>
-        </a>
+        <div class="site-header__bar">
+          <a class="brand-lockup" href="#top" aria-label="TZS Startseite">
+            <span class="brand-mark">
+              <img
+                src="assets/logo/TZS_logo_dark_noBack.png"
+                alt="TZS Logo"
+                width="1024"
+                height="1024"
+              />
+            </span>
+            <span class="brand-copy">
+              <strong>TZS</strong>
+              <span>Tschöpe Zinßer Solutions</span>
+            </span>
+          </a>
 
-        <nav class="nav-links" aria-label="Abschnittsnavigation">
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-navigation"
+            aria-label="Navigation öffnen"
+          >
+            <span class="nav-toggle__line"></span>
+            <span class="nav-toggle__line"></span>
+            <span class="nav-toggle__line"></span>
+          </button>
+        </div>
+
+        <nav class="nav-links" id="site-navigation" aria-label="Abschnittsnavigation">
           <a href="#leistungen">Leistungen</a>
           <a href="#gruender">Gründer</a>
         </nav>
@@ -969,6 +1077,67 @@
     </footer>
 
     <script>
+      (() => {
+        const navToggle = document.querySelector(".nav-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        if (!navToggle || !navLinks) {
+          return;
+        }
+
+        const mobileNavigation = window.matchMedia("(max-width: 819px)");
+
+        const setMenuOpen = (isOpen) => {
+          navToggle.setAttribute("aria-expanded", String(isOpen));
+          navToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Navigation schließen" : "Navigation öffnen"
+          );
+          navLinks.classList.toggle("is-open", isOpen);
+        };
+
+        const closeMenu = () => {
+          setMenuOpen(false);
+        };
+
+        navToggle.addEventListener("click", () => {
+          if (!mobileNavigation.matches) {
+            return;
+          }
+
+          const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+          setMenuOpen(!isOpen);
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            if (mobileNavigation.matches) {
+              closeMenu();
+            }
+          });
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeMenu();
+          }
+        });
+
+        const handleViewportChange = (event) => {
+          if (!event.matches) {
+            closeMenu();
+          }
+        };
+
+        if (typeof mobileNavigation.addEventListener === "function") {
+          mobileNavigation.addEventListener("change", handleViewportChange);
+        } else {
+          mobileNavigation.addListener(handleViewportChange);
+        }
+
+        closeMenu();
+      })();
+
       (() => {
         const servicesSection = document.querySelector("#leistungen");
 
@@ -1101,12 +1270,22 @@
         const options = [...servicesSection.querySelectorAll(".service-option")];
         const panels = [...servicesSection.querySelectorAll(".service-detail")];
         const initialService = services[0]?.id;
+        const serviceIds = new Set(services.map((service) => service.id));
+        let activeServiceId = initialService;
 
         const setActiveService = (serviceId) => {
+          const nextServiceId = serviceIds.has(serviceId) ? serviceId : activeServiceId;
+
+          if (!nextServiceId) {
+            return;
+          }
+
+          activeServiceId = nextServiceId;
+
           entries.forEach((entry) => {
             const option = entry.querySelector(".service-option");
             const mobileDetail = entry.querySelector(".service-mobile-detail");
-            const isActive = option?.dataset.service === serviceId;
+            const isActive = option?.dataset.service === nextServiceId;
 
             entry.classList.toggle("is-active", isActive);
 
@@ -1122,7 +1301,7 @@
           });
 
           panels.forEach((panel) => {
-            const isActive = panel.dataset.servicePanel === serviceId;
+            const isActive = panel.dataset.servicePanel === nextServiceId;
             panel.classList.toggle("is-active", isActive);
             panel.hidden = !isActive;
           });
@@ -1130,12 +1309,18 @@
 
         options.forEach((option) => {
           option.addEventListener("click", () => {
-            setActiveService(option.dataset.service);
+            const serviceId = option.dataset.service;
+
+            if (!serviceId) {
+              return;
+            }
+
+            setActiveService(serviceId);
           });
         });
 
-        if (initialService) {
-          setActiveService(initialService);
+        if (activeServiceId) {
+          setActiveService(activeServiceId);
         }
       })();
     </script>
